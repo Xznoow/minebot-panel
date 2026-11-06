@@ -1,0 +1,42 @@
+body {
+    font-family: system-ui, sans-serif;
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+    background: #1e1e1e;
+    color: #ddd;
+}
+
+#chat {
+    list-style: none;
+    height: 400px;
+    overflow-y: auto;
+    margin: 0 0 1rem;
+    padding: 0.5rem;
+    background: #111;
+    border: 1px solid #333;
+    font-family: monospace;
+}
+
+#chat li {
+    padding: 2px 0;
+}
+
+#chat .systeme {
+    color: #8ab4f8;
+    font-style: italic;
+}
+
+#chat .erreur {
+    color: #f28b82;
+}
+
+#form-chat {
+    display: flex;
+    gap: 0.5rem;
+}
+
+#message {
+    flex: 1;
+    padding: 0.5rem;
+}

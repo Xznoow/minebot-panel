@@ -1,0 +1,22 @@
+{
+  "name": "minebot-panel",
+  "version": "1.0.0",
+  "description": "Panel web local pour piloter des bots Minecraft (Mineflayer + ViaProxy)",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "express": "^5.3.0",
+    "mineflayer": "^4.39.0",
+    "mineflayer-viaproxy": "^0.7.9",
+    "socket.io": "^4.8.4"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}
