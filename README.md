@@ -1,5 +1,9 @@
 # Minebot Panel
 
+<p align="center">
+  <img src="docs/MineBot-Panel.png" alt="Logo MineBot-Panel" width="400">
+</p>
+
 Panel web **local** pour piloter des bots Minecraft Java depuis le navigateur : chat en temps réel, envoi de messages, suivi de la connexion.
 
 > Projet personnel en cours de développement.
