@@ -4,15 +4,17 @@
   <img src="docs/MineBot-Panel.png" alt="Logo MineBot-Panel" width="400">
 </p>
 
-Panel web **local** pour piloter des bots Minecraft Java depuis le navigateur : chat en temps réel, envoi de messages, suivi de la connexion.
+Panel web **local** pour piloter plusieurs bots Minecraft Java depuis le navigateur, chacun sur le serveur de ton choix : chat en temps réel, envoi de messages, suivi de la connexion.
 
 > Projet personnel en cours de développement.
 
 ## Fonctionnalités
 
-- Chat du serveur affiché en temps réel dans le navigateur (Socket.IO)
+- Plusieurs bots, chacun sur son propre serveur : ajout, démarrage, arrêt et suppression depuis le panel
+- Chat en temps réel du bot sélectionné, avec historique des 100 derniers événements
 - Envoi de messages en jeu depuis le panel
-- Suivi de l'état du bot : connexion, apparition, expulsion, déconnexion
+- Statut de chaque bot en direct (arrêté, connexion, connecté)
+- Synchronisation entre onglets : un changement fait dans un onglet apparaît dans tous les autres
 - Connexion aux serveurs récents (jusqu'à **26.3**) et plus anciens grâce à [ViaProxy](https://github.com/ViaVersion/ViaProxy)
 - Bots en **offline-mode** : aucun compte Microsoft nécessaire
 
@@ -32,17 +34,9 @@ Node.js · Express · Socket.IO · [Mineflayer](https://github.com/PrismarineJS/
 git clone https://github.com/Xznoow/minebot-panel.git
 cd minebot-panel
 npm install
-cp .env.example .env    # Windows PowerShell : Copy-Item .env.example .env
 ```
 
-Puis remplis le fichier `.env` :
-
-| Variable | Rôle |
-|---|---|
-| `MC_HOST` | Adresse du serveur Minecraft |
-| `MC_PORT` | Port du serveur (facultatif si l'adresse est résolue par DNS) |
-| `MC_USERNAME` | Pseudo du bot |
-| `PANEL_PORT` | Port du panel web (3000 par défaut) |
+Aucune configuration n'est nécessaire. Pour changer le port du panel (3000 par défaut), copie `.env.example` en `.env` et modifie `PANEL_PORT`.
 
 ## Lancement
 
@@ -52,13 +46,26 @@ npm start
 
 Ouvre ensuite [http://localhost:3000](http://localhost:3000). Le panel n'écoute que sur `127.0.0.1` : il n'est accessible que depuis ta machine.
 
-Au premier lancement, ViaProxy est téléchargé automatiquement dans le dossier `viaproxy/`.
+### Utilisation
+
+1. Dans le formulaire « Ajouter un bot », saisis un pseudo, l'adresse du serveur et, si besoin, son port.
+2. Clique sur **Démarrer** : le statut passe à « Connexion… », puis à « Connecté ».
+3. Clique sur un bot pour afficher son chat et lui faire envoyer des messages.
+
+La liste des bots est sauvegardée dans `data/bots.json` (non versionné).
+
+### ViaProxy
+
+Au premier démarrage d'un bot, ViaProxy est téléchargé automatiquement dans `viaproxy/`. Tous les bots partagent ce fichier ; chacun a son propre dossier de travail dans `viaproxy/instances/`.
+
+Pour passer à une version plus récente de ViaProxy (par exemple pour une nouvelle version de Minecraft), supprime le fichier `viaproxy/ViaProxy-*.jar` : il sera retéléchargé au démarrage suivant.
 
 ## Structure
 
 ```
-├── server.js            Serveur Express + Socket.IO
-├── src/botManager.js    Création du bot et remontée de ses événements
+├── server.js            Serveur Express + actions Socket.IO
+├── src/botManager.js    Gestion des bots : statut, historique, validation
+├── src/store.js         Sauvegarde de la liste des bots (data/bots.json)
 └── public/              Interface web (HTML, CSS, JS)
 ```
 
@@ -70,9 +77,9 @@ Un contournement est intégré dans `src/botManager.js`, à retirer quand Minefl
 
 ## Prochaines étapes
 
-- [ ] Gestion de plusieurs bots
+- [x] Gestion de plusieurs bots
+- [x] État du bot envoyé aux navigateurs qui se connectent en cours de route
 - [ ] Reconnexion automatique
-- [ ] État du bot envoyé aux navigateurs qui se connectent en cours de route
 - [ ] Authentification du panel
 
 ## Utilisation responsable

@@ -1,6 +1,6 @@
 body {
     font-family: system-ui, sans-serif;
-    max-width: 800px;
+    max-width: 1100px;
     margin: 2rem auto;
     padding: 0 1rem;
     background: #1e1e1e;
@@ -39,4 +39,67 @@ body {
 #message {
     flex: 1;
     padding: 0.5rem;
+}
+
+.layout {
+    display: grid; 
+    grid-template-columns: 320px 1fr; 
+    gap: 1.5rem; 
+}
+
+#liste-bots {
+    list-style: none; 
+    padding: 0; 
+    margin: 0 0 1.5rem; 
+}
+
+.bot {
+    padding: 0.6rem; 
+    margin-bottom: 0.4rem; 
+    background: #111; 
+    border: 1px solid #333; 
+    cursor: pointer; 
+}
+
+.bot.selectionne {
+    border-color: #8ab4f8; 
+}
+
+.bot .adresse {
+    display: block; 
+    font-size: 0.85em; 
+    color: #999; 
+}
+
+.bot button {
+    margin: 0.4rem 0.4rem 0 0; 
+}
+
+.statut {
+    font-size: 0.8em; 
+    padding: 1px 6px; 
+    border-radius: 8px; 
+    margin-left: 0.4rem; 
+}
+
+.statut-arrete {
+    background: #444; 
+}
+
+.statut-connexion {
+    background: #8a6d1e; 
+}
+
+.statut-connecte {
+    background: #1e6b3a; 
+}
+
+#form-ajout {
+    display: flex; 
+    flex-direction: column; 
+    gap: 0.4rem; 
+}
+
+.erreur {
+    color: #f28b82; 
 }
